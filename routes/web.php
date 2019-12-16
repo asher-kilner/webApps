@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('home');
-})->name('home');
+    return view('welcome');
+});
 
 
 Route::get('posts/create', 'PostController@create')->name('posts.create');
@@ -28,3 +28,7 @@ Route::get('posts/{post}', 'PostController@show')->name('posts.show');
 
 Route::delete('posts/{id}', 'PostController@destroy')->name('post.destroy');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
