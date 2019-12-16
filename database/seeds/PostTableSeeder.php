@@ -14,6 +14,7 @@ class PostTableSeeder extends Seeder
     {
         $post = new Post;
         $post->user_id = rand(1,50);
+        $post->title = "the bee movie";
         $post->body = "according to all know laws of aviation, a bee should not be capable of flight";
         $post->save();
         factory(App\Post::class, 50)->create();

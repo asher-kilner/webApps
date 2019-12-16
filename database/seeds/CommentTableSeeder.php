@@ -20,6 +20,6 @@ class CommentTableSeeder extends Seeder
         $comment->likes = rand(1,1000);
         $comment->save();
 
-        factory(App\Comment::class, 50)->create();
+        factory(App\Comment::class, 1000)->create();
     }
 }
