@@ -11,7 +11,7 @@
         Title: {{$user->title}} <br>
         favourite genre: {{$user->favourite_genre}} <br>
 
-        <form method="POST" action="">
+        <form method="POST" action="{{ route('users.friend', ['id'=>$user->id]) }}">
         @csrf
             <button type="submit">Add as friend</button>
         </form>

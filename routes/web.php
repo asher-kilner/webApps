@@ -30,6 +30,12 @@ Route::delete('posts/{id}', 'PostController@destroy')->name('post.destroy');
 
 Route::get('users/{id}', 'UserController@show')->name('users.show');
 
+Route::post('users/{id}', 'UserController@friend')->name('users.friend');
+
+Route::get('users', 'UserController@myFriends')->name('users.friends');
+
+
+
 
 Auth::routes();
 

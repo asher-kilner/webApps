@@ -16,8 +16,8 @@
 
                     You are logged in!
 
-                    
                     <p><a href="{{ route('posts.index')}}">Show all posts</a></p>
+                    <p><a href="{{ route('users.friends')}}">Show all friends</a></p>
                     <p><a href="{{ route('posts.create')}}">Create post</a></p>
                 </div>
             </div>
