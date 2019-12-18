@@ -7,7 +7,7 @@
     <a href="{{ route('posts.index')}}">back to posts</a>
 
     <p>
-        User: {{$post->user->name}} <br> 
+        User: <a href="{{ route('users.show', ['id' => $post->user->id]) }}">{{$post->user->username}}</a> <br> 
         Title: {{$post->title}} <br>
         Body: {{$post->body}} <br>
 

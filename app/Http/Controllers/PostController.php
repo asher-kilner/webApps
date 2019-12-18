@@ -15,11 +15,12 @@ class PostController extends Controller
         return view('posts.index', ['posts' => $posts]);
     }
 
-    public function show(Post $post)
+    public function show($id)
     
     {
+        $post = Post::findOrFail($id);
         $comments = Comment::orderBy('id', 'desc')->where('post_id', $post->id)->get();
-        //dd($comments);
+        
 
         return view('posts.show')->with('post', $post)->with('comments', $comments);    
     }

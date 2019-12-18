@@ -24,9 +24,11 @@ Route::post('posts/comment', 'CommentController@store')->name('comment.store');
 
 Route::get('posts/all', 'PostController@index')->name('posts.index');
 
-Route::get('posts/{post}', 'PostController@show')->name('posts.show');
+Route::get('posts/{id}', 'PostController@show')->name('posts.show');
 
 Route::delete('posts/{id}', 'PostController@destroy')->name('post.destroy');
+
+Route::get('users/{id}', 'UserController@show')->name('users.show');
 
 
 Auth::routes();

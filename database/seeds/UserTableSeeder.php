@@ -29,7 +29,7 @@ class UserTableSeeder extends Seeder
         $user->favourite_genre = "spooky";
         $user->title = "professional writer";
         $user->save();
-        $user->friends()->sync(1);
+        $user->friends()->attach(1);
 
         factory(App\User::class, 50)->create();
     }
