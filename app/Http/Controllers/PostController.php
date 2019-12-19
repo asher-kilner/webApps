@@ -21,7 +21,6 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $comments = Comment::orderBy('id', 'desc')->where('post_id', $post->id)->get();
         
-
         return view('posts.show')->with('post', $post)->with('comments', $comments);    
     }
 
@@ -40,7 +39,7 @@ class PostController extends Controller
         ]);
 
         $p = new Post;
-        $p->user_id = 1;
+        $p->user_id = auth()->user()->id;
         $p->title = $validateData['title'];
         $p->body = $validateData['body'];
         $p->save();

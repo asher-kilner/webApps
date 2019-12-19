@@ -38,6 +38,7 @@ class UserController extends Controller
         $id = auth()->user()->id;
         $user = User::findOrFail($id);
         $friends = $user->friends;
+        //dd($friends);
         return view('users.friends')->with('friends', $friends);
     }
 }

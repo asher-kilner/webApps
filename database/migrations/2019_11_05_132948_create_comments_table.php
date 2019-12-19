@@ -19,7 +19,7 @@ class CreateCommentsTable extends Migration
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->Text('title');
+            $table->text('user');
             $table->longText('body');
             $table->integer('likes');
             $table->timestamps();
