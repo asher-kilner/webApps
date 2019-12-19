@@ -8,29 +8,34 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::findOrFail($id);
         $posts = Post::orderBy('id', 'desc')->where('user_id', $user->id)->get();
-        return view('users.show')->with('user', $user)->with('posts', $posts);
-    }
-
-    public function friend($id)
-    {
-        $user = User::findOrFail($id);
-        $posts = Post::orderBy('id', 'desc')->where('user_id', $user->id)->get();
-
         $currentUserId = auth()->user()->id;
         $currentUser = User::findOrFail($currentUserId);
-        foreach ($currentUser->friends as $friend){
-            if($friend->id == $id){
-                session()->flash('message', 'you are already friends.');
-                return view('users.show')->with('user', $user)->with('posts', $posts);
-            }
-        }
+        $friends = $currentUser->friends;
+        return view('users.show')->with('user', $user)->with('posts', $posts)->with('friends', $friends);
+    }
+
+    public function addFriend($id)
+    {
+        $user = User::findOrFail($id);
+        $posts = Post::orderBy('id', 'desc')->where('user_id', $user->id)->get();
+        $currentUserId = auth()->user()->id;
+        $currentUser = User::findOrFail($currentUserId);
         $currentUser->friends()->attach($id);
         session()->flash('message', 'Friend was added.');
-        return view('users.show')->with('user', $user)->with('posts', $posts);
+        $friends = $currentUser->friends;
+        return redirect()->route('posts.index')->with('message', 'Post was destroyed.');
+    }
+
+    public function removeFriend($id)
+    {
+        $currentUserId = auth()->user()->id;
+        $currentUser = User::findOrFail($currentUserId);
+        $currentUser->friends()->detach($id);
+        session()->flash('message', 'Friend was removed.');
+        return redirect()->route('home')->with('message', 'Post was destroyed.');
     }
 
     public function myFriends()

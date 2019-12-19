@@ -9,7 +9,7 @@
 
     <div id="root">
         <a href="{{ route('posts.index')}}">back to posts</a><br><br>
-        User: <a href="{{ route('users.show', ['id' => $post->user->id]) }}">{{$post->user->username}}</a> <br> 
+        User: <a href="{{ route('users.show', ['user' => $post->user]) }}">{{$post->user->username}}</a> <br> 
         Title: {{$post->title}} <br>
         Body: {{$post->body}} <br>
 

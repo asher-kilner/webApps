@@ -74,8 +74,16 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('home') }}"
+                                       onclick="event.preventDefault();
+                                                    document.getElementById('home-form').submit();"">
+                                        {{ __('Dashboard') }}
+                                    </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <form id="home-form" action="{{ route('home') }}" method="GET">
                                         @csrf
                                     </form>
                                 </div>

@@ -19,20 +19,22 @@ Route::get('/', function () {
 Route::get('posts/create', 'PostController@create')->name('posts.create')->middleware('auth');
 
 Route::post('posts/store', 'PostController@store')->name('post.store')->middleware('auth');
- 
-Route::post('posts/comment/{id}', 'CommentController@store')->name('comment.store')->middleware('auth');
 
 Route::get('posts/all', 'PostController@index')->name('posts.index');
+ 
+Route::post('posts/comment/{id}', 'CommentController@store')->name('comment.store')->middleware('auth');
 
 Route::get('posts/{id}', 'PostController@show')->name('posts.show');
 
 Route::delete('posts/{id}', 'PostController@destroy')->name('post.destroy')->middleware('auth');
 
-Route::get('users/{id}', 'UserController@show')->name('users.show');
+Route::get('users/{user}', 'UserController@show')->name('users.show');
 
-Route::post('users/{id}', 'UserController@friend')->name('users.friend')->middleware('auth');
+Route::get('friends', 'UserController@myFriends')->name('users.friends')->middleware('auth');
 
-Route::get('users', 'UserController@myFriends')->name('users.friends')->middleware('auth');
+Route::post('friends/add/{id}', 'UserController@addFriend')->name('users.add-friend');
+
+Route::delete('friends/remove/{id}', 'UserController@removeFriend')->name('users.remove-friend');
 
 Auth::routes();
 

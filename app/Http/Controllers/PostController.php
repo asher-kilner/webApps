@@ -43,9 +43,7 @@ class PostController extends Controller
         $p->title = $validateData['title'];
         $p->body = $validateData['body'];
         $p->save();
-
-        session()->flash('message', 'Post Was Created.');
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('message', 'Post Was Created.');
     }
 
     public function destroy($id)

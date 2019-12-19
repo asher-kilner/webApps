@@ -14,23 +14,19 @@
                 list of your friends: <br> 
                 <ul>
                     @foreach ($friends as $friend)
-                        <li><a href="{{ route('users.show', ['id' => $friend->id])}}">{{$friend->username}}</a></li>
+                        <li><a href="{{ route('users.show', ['user' => $friend])}}">{{$friend->username}}</a></li>
                     @endforeach
                 </ul>
             </p>   
         </div>
-        <div id="demo">
-
-        </div>
 
         <script>
-        //document.getElementById("demo").innerHTML = "<p>Find user Profiles to make friends!</p>";
-        var friends = {{json_encode($friends)}};
-        if (friends) {
+            var friends = {!! json_encode($friends->toArray()) !!};
+            if (friends.length == 0) {
 
-            document.getElementById("friends").innerHTML = "<p>Find user Profiles to make friends!</p>";
-        }
-    </script>
+                document.getElementById("friends").innerHTML = "<p>Find user Profiles to make friends!</p>";
+            }
+        </script>
     </div>
 
     
