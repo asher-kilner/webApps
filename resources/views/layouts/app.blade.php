@@ -30,6 +30,7 @@
     
 </head>
 <body>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -95,8 +96,22 @@
         </nav>
 
         <main class="py-4">
+        @if ($errors->any())
+            <div>
+                Errors:
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li style="color:red;">{{$error}}</li>
+                    @endforeach
+                </ul>  
+            </div>
+        @endif
+        @if (session('message'))
+            <p><b>{{ session('message') }}</b></p>
+        @endif
             @yield('content')
         </main>
     </div>
 </body>
+
 </html>

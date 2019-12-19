@@ -3,6 +3,7 @@
 
 
 @section('content')
+<div class="col-md-8">
 <h1>User Profile</h1>
     <div id="root">
         <a href="{{ route('posts.index')}}">back to posts</a><br>
@@ -52,6 +53,7 @@
             
         </script> 
     </div>
+</div>
     
 
 @endsection

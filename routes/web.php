@@ -11,14 +11,26 @@
 |
 */
 
+
+use App\Twitter;
+
+app()->singleton('App\Twitter', function ($app) {
+    return new Twitter('secret key');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('exampleroute', 'PostController@exampleMethod');
 
 Route::get('posts/create', 'PostController@create')->name('posts.create')->middleware('auth');
 
+Route::get('posts/edit/{id}', 'PostController@edit')->name('posts.edit')->middleware('auth');
+
 Route::post('posts/store', 'PostController@store')->name('post.store')->middleware('auth');
+
+Route::post('posts/update/{id}', 'PostController@update')->name('post.update')->middleware('auth');
 
 Route::get('posts/all', 'PostController@index')->name('posts.index');
  
