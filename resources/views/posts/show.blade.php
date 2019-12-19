@@ -12,7 +12,13 @@
         User: <a href="{{ route('users.show', ['user' => $post->user]) }}">{{$post->user->username}}</a> <br> 
         Title: {{$post->title}} <br>
         Body: {{$post->body}} <br>
-
+        <div id="delete">
+            <form method="POST" action="{{ route('post.destroy', ['id' => $post->id])}}">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Delete Post</button>
+            </form>
+        </div>
         
         <p>
             Post a Comment:<br>
@@ -29,6 +35,15 @@
 
     </div>
 
+    <script type="text/javascript">
+            
+            var postUser =  {!! json_encode($post->user->id) !!};
+            var currentUser = {!! json_encode(auth()->user()->id) !!};
+            if(postUser != currentUser){
+                document.getElementById("delete").innerHTML = "";
+            }
+            
+    </script>
     <script>
         var app = new Vue({
             el: "#root",

@@ -9,7 +9,8 @@
     <a href="{{ route('posts.create')}}">Add Post</a>
     <ul>
         @foreach ($posts as $post)
-            <li><a href="{{ route('posts.show', ['id' => $post->id])}}">{{$post->title}}</a></li>
+            <li><a href="{{ route('posts.show', ['id' => $post->id])}}">{{$post->title}}</a> 
+            by <a href="{{ route('users.show', ['user' => $post->user]) }}">{{$post->user->username}}</a></li>
         @endforeach
     </ul>
     
